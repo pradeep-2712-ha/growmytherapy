@@ -2,32 +2,29 @@
    THEME VARIABLES
    ================================ */
 :root {
-  /* Colors */
-  --color-bg: #f5f3f0;
+  --color-bg: #faf7f4;
   --color-bg-alt: #ffffff;
-  --color-bg-soft: #f8f5f2;
-  --color-text-main: #1f2023;
-  --color-text-muted: #6a6c74;
+  --color-bg-soft: #f6f3ef;
+  --color-text-main: #1d1f22;
+  --color-text-muted: #6f7178;
   --color-text-inverse: #fdfbf8;
-  --color-primary: #5b6f82;        /* slate / coastal */
-  --color-primary-soft: #b8c4cf;
-  --color-primary-dark: #3f5264;
-  --color-accent: #c9a88b;
-  --color-border-subtle: #ded7d0;
+  --color-primary: #567a86;
+  --color-primary-soft: #a8c0c8;
+  --color-primary-dark: #2e5962;
+  --color-accent: #c9a27f;
+  --color-border-subtle: #e3ddd5;
 
-  /* Typography */
-  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  --font-display: "Playfair Display", "Times New Roman", serif;
+  --font-sans: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
 
-  --fs-xs: 0.75rem;
-  --fs-sm: 0.875rem;
-  --fs-base: 1rem;
-  --fs-lg: 1.125rem;
-  --fs-xl: 1.5rem;
-  --fs-2xl: 2rem;
-  --fs-3xl: 2.4rem;
-  --fs-4xl: clamp(2.4rem, 3.6vw, 3rem);
+  --fs-xs: 0.76rem;
+  --fs-sm: 0.9rem;
+  --fs-base: 1.06rem;
+  --fs-lg: 1.2rem;
+  --fs-xl: 1.6rem;
+  --fs-2xl: 2.2rem;
+  --fs-3xl: 2.7rem;
+  --fs-4xl: clamp(2.8rem, 4.6vw, 3.6rem);
 
   --lh-tight: 1.2;
   --lh-normal: 1.5;
@@ -237,7 +234,7 @@ ol {
   left: 0;
   bottom: 0;
   width: 0;
-  height: 1px;
+  height: 2px;
   background: var(--color-text-main);
   transition: width 150ms ease-out;
 }
@@ -373,9 +370,9 @@ ol {
 
 .link-understated {
   font-size: var(--fs-sm);
-  color: var(--color-primary-dark);
+  color: var(--color-accent);
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 2px;
   text-decoration-thickness: 1px;
 }
 
@@ -388,10 +385,10 @@ ol {
 .hero {
   background: linear-gradient(
     90deg,
-    #dae7ee 0%,
-    #e5e7ef 35%,
-    #f7ebdf 72%,
-    #f9f2e7 100%
+    #dbe6ea 0%,
+    #e8edf2 38%,
+    #f3e8dc 72%,
+    #f7efe6 100%
   );
   padding-block: var(--space-12);
 }
@@ -425,6 +422,7 @@ ol {
   font-family: var(--font-display);
   font-size: var(--fs-4xl);
   line-height: var(--lh-tight);
+  letter-spacing: 0.01em;
 }
 
 .hero__subtitle {
@@ -729,8 +727,8 @@ ol {
    FOOTER
    ================================ */
 .site-footer {
-  background: #000000;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  background: #1f2a31;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding-block: var(--space-10);
   font-size: var(--fs-sm);
   color: var(--color-text-inverse);
@@ -740,6 +738,22 @@ ol {
   display: grid;
   gap: var(--space-6);
 }
+/* ticker */
+.ticker{overflow:hidden;background:var(--color-primary);color:var(--color-text-inverse);font-size:var(--fs-xs);letter-spacing:0.18em;text-transform:uppercase;position:sticky;top:0;z-index:1000}
+.ticker__inner{display:flex;white-space:nowrap}
+.ticker__track{display:inline-block;padding-block:var(--space-2);animation:ticker-scroll 24s linear infinite}
+.ticker__item{display:inline-block;padding-inline:var(--space-6)}
+.ticker:hover .ticker__track{animation-play-state:paused}
+@keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.ticker__track{animation:none}}
+.ticker--hidden{display:none}
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 500ms ease-out,transform 500ms ease-out;will-change:opacity,transform}
+.reveal--active{opacity:1;transform:none}
+.reveal-up{transform:translateY(16px)}
+.reveal-left{transform:translateX(-16px)}
+.reveal-right{transform:translateX(16px)}
+@media (prefers-reduced-motion: reduce){.reveal{transform:none;transition:none}}
 
 @media (min-width: 880px) {
   .site-footer__grid {
