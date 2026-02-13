@@ -26,8 +26,10 @@
 
     <!-- External stylesheet -->
     <link rel="stylesheet" href="styles.css" />
+    
   </head>
   <body>
+    
     <a href="#main" class="visually-hidden">Skip to content</a>
 
     <!-- HEADER -->
@@ -79,7 +81,7 @@
       <!-- HERO -->
       <section id="hero" class="hero" aria-labelledby="hero-title">
         <div class="container hero__grid">
-          <div class="hero__content">
+          <div class="hero__content reveal reveal-up">
             <p class="hero__eyebrow">
               Anxiety, Trauma &amp; Burnout Therapy for Adults
             </p>
@@ -100,7 +102,7 @@
 
           <div class="hero__media" aria-hidden="true">
             <!-- Replace with Dr. Maya’s portrait-style photo -->
-            <div class="hero__photo-main">
+            <div class="hero__photo-main reveal reveal-up">
               <img
                 src="top.png"
                 alt="Dr. Maya Reynolds seated in a calm, light-filled office"
@@ -122,9 +124,10 @@
             <img
               src="./calm-coastline.jpg"
               alt=""
-              loading="lazy" />
+              loading="lazy"
+              class="reveal reveal-up" />
           </div>
-          <div class="intro__body">
+          <div class="intro__body reveal reveal-up">
             <p class="section__eyebrow">
               A grounded, collaborative approach
             </p>
@@ -171,7 +174,7 @@
 
           <div class="specialties__grid">
             <!-- Service 1 -->
-            <article class="specialty-card">
+            <article class="specialty-card reveal reveal-up">
               <div class="specialty-card__media">
                 <!-- Replace with calm, grounded image related to anxiety relief -->
                 <img
@@ -195,7 +198,7 @@
             </article>
 
             <!-- Service 2 -->
-            <article class="specialty-card">
+            <article class="specialty-card reveal reveal-up">
               <div class="specialty-card__media">
                 <!-- Replace with image evoking safety & depth -->
                 <img
@@ -222,7 +225,7 @@
             </article>
 
             <!-- Service 3 -->
-            <article class="specialty-card">
+            <article class="specialty-card reveal reveal-up">
               <div class="specialty-card__media">
                 <!-- Replace with image reflecting creative / professional life -->
                 <img
@@ -255,7 +258,7 @@
       <!-- SUPPORT / SYMPTOMS -->
       <section class="section support" aria-labelledby="support-title">
         <div class="container support__grid">
-          <div class="support__headline">
+          <div class="support__headline reveal reveal-up">
             <p class="section__eyebrow">Is this resonating?</p>
             <h2 id="support-title" class="section__title">
               Signs it may be time to reach out
@@ -303,7 +306,8 @@
             <img
               src="./support-grounding.jpg"
               alt=""
-              loading="lazy" />
+              loading="lazy"
+              class="reveal reveal-up" />
           </div>
         </div>
       </section>
@@ -316,10 +320,11 @@
             <img
               src="Dr. Maya Reynolds.png"
               alt="Portrait of Dr. Maya Reynolds, licensed clinical psychologist in Santa Monica, CA"
-              loading="lazy" />
+              loading="lazy"
+              class="reveal reveal-up" />
           </div>
 
-          <div class="about__body">
+          <div class="about__body reveal reveal-up">
             <p class="section__eyebrow">Meet Dr. Reynolds</p>
             <h2 id="about-title" class="section__title">
               A calm, thoughtful space to reconnect with yourself
@@ -357,7 +362,7 @@
         aria-labelledby="office-title"
         id="office">
         <div class="container office__grid">
-          <div>
+          <div class="reveal reveal-up">
             <p class="section__eyebrow">Our office</p>
             <h2 id="office-title" class="section__title">
               A quiet, grounding space in Santa Monica
@@ -386,16 +391,18 @@
           <div class="office__media-grid" aria-hidden="true">
             <!-- Office photos from your folder -->
             <div class="office__media-main">
-              <img
+            <img
                 src="office1.jpeg"
                 alt="Comfortable seating area in Dr. Reynolds’ Santa Monica therapy office"
-                loading="lazy" />
+              loading="lazy"
+              class="reveal reveal-up" />
             </div>
             <div class="office__media-secondary">
-              <img
+            <img
                 src="office2.jpeg"
                 alt="Natural light and plants in the therapy office, creating a calm atmosphere"
-                loading="lazy" />
+              loading="lazy"
+              class="reveal reveal-up" />
             </div>
           </div>
         </div>
@@ -406,7 +413,7 @@
         class="section faqs"
         aria-labelledby="faqs-title"
         id="faqs">
-        <div class="container faqs__inner">
+        <div class="container faqs__inner reveal reveal-up">
           <p class="section__eyebrow">Questions</p>
           <h2 id="faqs-title" class="section__title">
             Frequently asked questions
@@ -532,6 +539,7 @@
         </div>
       </div>
     </footer>
+    
 
     <script>
       (function () {
@@ -542,6 +550,33 @@
         burger.addEventListener("click", () => {
           const isOpen = mobileNav.classList.toggle("site-nav-mobile--open");
           burger.setAttribute("aria-expanded", String(isOpen));
+        });
+      })();
+      (function () {
+        var nodes = document.querySelectorAll(".reveal");
+        if (!nodes.length) return;
+        if (!("IntersectionObserver" in window)) {
+          nodes.forEach(function (el) {
+            el.classList.add("reveal--active");
+          });
+          return;
+        }
+        var observer = new IntersectionObserver(
+          function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                var el = entry.target;
+                var delay = el.getAttribute("data-reveal-delay");
+                if (delay) el.style.transitionDelay = delay;
+                el.classList.add("reveal--active");
+                obs.unobserve(el);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+        );
+        nodes.forEach(function (el) {
+          observer.observe(el);
         });
       })();
     </script>
